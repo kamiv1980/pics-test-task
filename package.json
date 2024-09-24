@@ -1,6 +1,7 @@
 {
   "name": "pics-test-task",
   "version": "0.1.0",
+  "homepage": "https://kamiv1980.github.io/pics-test-task",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -29,7 +30,9 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-loader": "^4.0.2"
+    "eslint-loader": "^4.0.2",
+    "gh-pages": "^6.1.1"
   }
 }

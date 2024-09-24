@@ -1,4 +1,17 @@
-# Getting Started with Create React App and Redux
+# Project Overview
+This application leverages Redux Toolkit for efficient state management of comments, allowing users to interact seamlessly with the application. The state of comments is persisted across page reloads using redux-persist, ensuring a smooth user experience.
+
+We fetch comments from the API at https://dummyjson.com/comments using Axios, making it easy to retrieve and display data dynamically. Users can effortlessly add new comments via an intuitive form and delete existing ones with a single click.
+
+One of the standout features of this application is its ability to maintain the scroll position and preserve input text, even when the page is refreshed, enhancing user interaction.
+
+
+react-hook-form: This library streamlines form handling and validation, enabling efficient management of form state. With react-hook-form, we minimize unnecessary re-renders, which boosts application performance and provides a better user experience.
+
+MUI (Material-UI): We utilize MUI to create a visually appealing and responsive user interface. MUI's pre-designed components follow Material Design principles, ensuring consistency and enhancing the overall aesthetic of the application. The use of buttons, text fields, and other UI elements contributes to a polished and user-friendly experience.
+
+
+## Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
@@ -39,8 +52,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

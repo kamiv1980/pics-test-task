@@ -1,58 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { store, persistor } from './store';
+import { Layout } from './app/layouts/default';
+import { setScrollPosition } from './features/scroll/scrollSlice';
+
+const Comments = lazy(() => import('./app/pages/comments'));
+const NoMatch = lazy(() => import('./app/pages/nomatch'));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+    const scrollPosition = useSelector((state) => state.scroll.scrollPosition);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!loading) {
+            window.scrollTo(0, scrollPosition);
+        }
+    }, [loading, scrollPosition]);
+
+    useEffect(() => {
+        // Simulate data fetching
+        const loadData = async () => {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            setLoading(false);
+        };
+        loadData();
+    }, []);
+
+    const handleScroll = () => {
+        dispatch(setScrollPosition(window.scrollY));
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <Router>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Routes>
+                            <Route path="/" element={<Layout />}>
+                                <Route index element={<Comments />} />
+                                <Route path="*" element={<NoMatch />} />
+                            </Route>
+                        </Routes>
+                    </Suspense>
+                </Router>
+            </PersistGate>
+        </Provider>
+    );
 }
 
 export default App;

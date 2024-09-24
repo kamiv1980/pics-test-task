@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpics_test_task=self.webpackChunkpics_test_task||[]).push([[95],{4095:(s,t,e)=>{e.r(t),e.d(t,{default:()=>h});e(5043);var c=e(5475),n=e(579);const h=function(){return(0,n.jsxs)("div",{children:[(0,n.jsx)("h2",{children:"Page not found"}),(0,n.jsx)("p",{children:(0,n.jsx)(c.N_,{to:"/pics-test-task",children:"Go to the home page"})})]})}}}]);
+//# sourceMappingURL=95.cd2e4ccf.chunk.js.map
